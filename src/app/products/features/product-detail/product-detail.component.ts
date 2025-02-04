@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject, Input } from '@angular/core';
+import { ProductDetailStateService } from '../../data-access/product-detail-state.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './product-detail.component.html',
-  styles: ``
+  providers: [ProductDetailStateService]
 })
-export class ProductDetailComponent {
+export default class ProductDetailComponent implements OnInit {
+  productDetailState = inject(ProductDetailStateService).state;
+  
+  @Input() id!: string;  // Se usa `@Input()` en lugar de `input.required`
 
+  constructor(private productDetailStateService: ProductDetailStateService) {}
+
+  ngOnInit(): void {
+    if (this.id) {
+      this.productDetailState.getById(this.id);
+    }
+  }
 }
