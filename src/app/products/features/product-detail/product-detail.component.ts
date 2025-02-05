@@ -1,11 +1,11 @@
 import { Component, OnInit, inject, Input } from '@angular/core';
 import { ProductDetailStateService } from '../../data-access/product-detail-state.service';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, CommonModule],
   templateUrl: './product-detail.component.html',
   providers: [ProductDetailStateService]
 })

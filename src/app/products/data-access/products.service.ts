@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BaseHttpService } from "../../shared/data-access/base-hhtp.service";
 import { Observable } from "rxjs";
-import { Product } from "../../shared/intefaces/product.inteface";
+import { Product } from "../../shared/interfaces/product.interface";
 
 const limit = 5
 

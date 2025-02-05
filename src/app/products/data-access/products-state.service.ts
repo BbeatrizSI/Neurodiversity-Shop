@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { Product } from "../../shared/intefaces/product.inteface";
+import { Product } from "../../shared/interfaces/product.interface";
 import { catchError, map, startWith, switchMap } from "rxjs/operators";
 import { signalSlice } from 'ngxtension/signal-slice';
 import { ProductsService } from "./products.service";
