@@ -40,10 +40,10 @@ export class CartStateService {
     actionSources: {
       add: (state, action$: Observable<ProductItemCart>) =>
         action$.pipe(map((product) => this.add(state, product))),
-    //   remove: (state, action$: Observable<number>) =>
-    //     action$.pipe(map((id) => this.remove(state, id))),
-    //   udpate: (state, action$: Observable<ProductItemCart>) =>
-    //     action$.pipe(map((product) => this.update(state, product))),
+      remove: (state, action$: Observable<number>) =>
+        action$.pipe(map((id) => this.remove(state, id))),
+      udpate: (state, action$: Observable<ProductItemCart>) =>
+        action$.pipe(map((product) => this.update(state, product))),
     },
     effects: (state) => ({
       load: () => {
@@ -71,21 +71,21 @@ export class CartStateService {
     };
   }
 
-//   private remove(state: Signal<State>, id: number) {
-//     return {
-//       products: state().products.filter((product) => product.product.id !== id),
-//     };
-//   }
+  private remove(state: Signal<State>, id: number) {
+    return {
+      products: state().products.filter((product) => product.product.id !== id),
+    };
+  }
 
-//   private update(state: Signal<State>, product: ProductItemCart) {
-//     const products = state().products.map((productInCart) => {
-//       if (productInCart.product.id === product.product.id) {
-//         return { ...productInCart, quantity: product.quantity };
-//       }
+  private update(state: Signal<State>, product: ProductItemCart) {
+    const products = state().products.map((productInCart) => {
+      if (productInCart.product.id === product.product.id) {
+        return { ...productInCart, quantity: product.quantity };
+      }
 
-//       return productInCart;
-//     });
+      return productInCart;
+    });
 
-//     return { products };
-//   }
+    return { products };
+  }
 }
