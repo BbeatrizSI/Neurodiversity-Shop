@@ -1,16 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartStateService } from '../../data-access/cart-state.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './header.component.html',
   styles: ``
 })
 export class HeaderComponent {
   cartState = inject(CartStateService).state;
+  darkMode = signal<boolean>(false);
 
   ngOninit(): void {
     this.loadTheme();
@@ -22,12 +24,12 @@ export class HeaderComponent {
     if (html.classList.contains('dark')) {
       html.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-      console.log('light');
+      this.darkMode.set(false);
       
     } else {
       html.classList.add('dark');
       localStorage.setItem('theme', 'dark');
-      console.log('dark');
+      this.darkMode.set(true);
     }
   }
 
